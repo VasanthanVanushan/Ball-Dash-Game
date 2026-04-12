@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float targetSpeed = 10f;
     public float lateralForce = 30f;
     public float maxLateralPos = 4f;
+    public float upForce = 5f;
+    bool isGrounded;
 
     private void Awake()
     {
@@ -17,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
     {
         ForwardMovement();
         LateralMovement();
+    }
+
+    void Update()
+    {
+         JumpMovement();
     }
 
     void ForwardMovement()
@@ -51,5 +58,37 @@ public class PlayerMovement : MonoBehaviour
         Vector3 clampedPosition = transform.position;
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, -maxLateralPos, maxLateralPos);  //It restricts a value within a range -> Keep X between -maxLateralPos and +maxLateralPos
         transform.position = clampedPosition;
+    }
+
+
+
+
+
+        //For Jump Purpose
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                isGrounded = true;
+            }
+        }
+
+        void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                isGrounded = false;
+            }
+        }
+
+    void JumpMovement()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            // Reset vertical velocity for clean jump
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+
+            rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
+        }
     }
 }
