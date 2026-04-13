@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ObstacleGeneratorScript : MonoBehaviour
 {
-    public GameObject obstaclePrefab;
+    public GameObject[] obstaclePrefabs;
     public Transform player;
     public Vector3 spawnPosition;
     public float distanceBetweenObstacles = 40f;
@@ -19,6 +19,8 @@ public class ObstacleGeneratorScript : MonoBehaviour
 
             spawnPosition = new Vector3(x , 0.5f , spawnPosition.z + distanceBetweenObstacles); 
         
+            GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0,obstaclePrefabs.Length)];
+
             Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);    // z = 40 -> 80 -> 120 -> 160 .....
         }
     }
