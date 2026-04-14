@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-         JumpMovement();
+        JumpMovement();
     }
 
     void ForwardMovement()
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = clampedVelocity;            //Apply it back (0, 0, 10)  
         }
 
-        Debug.Log(targetSpeed + " -- " + currentSpeed.ToString("F2"));
+        //Debug.Log(targetSpeed + " -- " + currentSpeed.ToString("F2"));
     }
 
     void LateralMovement()
