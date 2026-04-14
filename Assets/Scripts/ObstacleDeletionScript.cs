@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class ObstacleScript : MonoBehaviour
+public class ObstacleDeletionScript : MonoBehaviour
 {
     public GameObject player;
-    public Vector3 offSet = new Vector3(0, 0, -20);
+    public Vector3 offSet = new Vector3(0, 0, -30);
 
     void Awake()
     {
