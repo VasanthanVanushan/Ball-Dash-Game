@@ -24,7 +24,7 @@ public class CoinManagerScript : MonoBehaviour
     public void addCoin(int amount)
     {
         totalCoins = totalCoins + amount ;
-        Debug.Log("Total Coins : " + totalCoins);
+        //Debug.Log("Total Coins : " + totalCoins);
 
         coinScoreText.text = totalCoins.ToString();
     }

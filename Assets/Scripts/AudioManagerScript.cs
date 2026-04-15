@@ -34,7 +34,7 @@ public class AudioManagerScript : MonoBehaviour
 
     public void Start()
     {
-        PlayMusic(inGameClip);
+        
     }
 
     

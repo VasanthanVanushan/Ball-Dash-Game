@@ -71,6 +71,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 isGrounded = true;
             }
+            if (collision.gameObject.CompareTag("Obstacle")) //GameOver purpose
+            {
+                AudioManagerScript.instance.PlaySFX(AudioManagerScript.instance.collisionClip);
+                StateManagerScript.instance.ChangeToGameOver();
+            }
         }
 
         void OnCollisionExit(Collision collision)
