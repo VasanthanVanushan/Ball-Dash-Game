@@ -8,6 +8,7 @@ public class CoinScript : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            AudioManagerScript.instance.PlaySFX(AudioManagerScript.instance.coinClip);
             CoinManagerScript.instance.addCoin(coinValue);  //Increase the coin
             Destroy(gameObject);
         }
