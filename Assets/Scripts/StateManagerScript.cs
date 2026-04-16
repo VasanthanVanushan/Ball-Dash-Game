@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public enum GameState
 {
-    MainMenu,
     Playing,
     Pause,
     GameOver
@@ -15,8 +14,6 @@ public class StateManagerScript : MonoBehaviour
 {
     public static StateManagerScript instance;
 
-
-    public GameObject MainMenuUi;
     public GameObject InGameMenuUi;
     public GameObject PauseMenuUi;
     public GameObject GameOverMenuUi;
@@ -44,7 +41,7 @@ public class StateManagerScript : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(GameState.MainMenu);
+        ChangeState(GameState.Playing);
     }
 
 
@@ -58,8 +55,7 @@ public class StateManagerScript : MonoBehaviour
         //Click Events
         public void ChangeToMainMenu()
         {
-            ChangeState(GameState.MainMenu);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
         public void ChangeToPlaying()
         {
@@ -82,7 +78,7 @@ public class StateManagerScript : MonoBehaviour
 
     private IEnumerator TransitionToState(GameState newState)
     {
-        if(newState != GameState.MainMenu)
+        if(newState != GameState.Playing)
         {
             yield return new WaitForSecondsRealtime(delay);
         }
@@ -95,11 +91,6 @@ public class StateManagerScript : MonoBehaviour
         HideAllMenu();
         switch(CurrentState)
         {
-            case GameState.MainMenu:
-                Time.timeScale = 0;
-                MainMenuUi.SetActive(true);
-                AudioManagerScript.instance.PlayMusic(AudioManagerScript.instance.menuClip);
-                break;
             case GameState.Playing:
                 Time.timeScale = 1;
                 InGameMenuUi.SetActive(true);
@@ -121,7 +112,6 @@ public class StateManagerScript : MonoBehaviour
 
     private void HideAllMenu()
     {
-        MainMenuUi.SetActive(false);
         InGameMenuUi.SetActive(false);
         PauseMenuUi.SetActive(false);
         GameOverMenuUi.SetActive(false);

@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //For Jump Purpose
-        void OnCollisionEnter(Collision collision)
+        public void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Ground"))
             {
@@ -75,10 +75,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 AudioManagerScript.instance.PlaySFX(AudioManagerScript.instance.collisionClip);
                 StateManagerScript.instance.ChangeToGameOver();
+                ScoreManagerScript.instance.gameOverScore();
+                CoinManagerScript.instance.gameOverCoinScore();
             }
         }
 
-        void OnCollisionExit(Collision collision)
+        public void OnCollisionExit(Collision collision)
         {
             if (collision.gameObject.CompareTag("Ground"))
             {

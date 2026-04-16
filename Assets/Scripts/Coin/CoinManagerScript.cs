@@ -7,6 +7,8 @@ public class CoinManagerScript : MonoBehaviour
     private int totalCoins = 0 ;
 
     public TextMeshProUGUI coinScoreText;
+    public TextMeshProUGUI gameOverCoinScoreText;
+
 
     private void Awake()
     {
@@ -27,6 +29,11 @@ public class CoinManagerScript : MonoBehaviour
         //Debug.Log("Total Coins : " + totalCoins);
 
         coinScoreText.text = totalCoins.ToString();
+    }
+
+    public void gameOverCoinScore()
+    {
+        gameOverCoinScoreText.text = totalCoins.ToString();
     }
 
 }
