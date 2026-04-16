@@ -31,9 +31,14 @@ public class CoinManagerScript : MonoBehaviour
         coinScoreText.text = totalCoins.ToString();
     }
 
-    public void gameOverCoinScore()
+    public void gameOverCoinScore(int coins)
     {
-        gameOverCoinScoreText.text = totalCoins.ToString();
+        gameOverCoinScoreText.text = coins.ToString();
+    }
+
+    public int GetCoinScore()  
+    {
+        return totalCoins;
     }
 
 }

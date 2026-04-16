@@ -105,6 +105,14 @@ public class StateManagerScript : MonoBehaviour
                 Time.timeScale = 0;
                 GameOverMenuUi.SetActive(true);
                 AudioManagerScript.instance.PlayMusic(AudioManagerScript.instance.menuClip);
+
+                int currentScore = ScoreManagerScript.instance.GetScore();
+                int currentCoinScore = CoinManagerScript.instance.GetCoinScore();
+                
+                ScoreManagerScript.instance.gameOverScore(currentScore);
+                CoinManagerScript.instance.gameOverCoinScore(currentCoinScore);
+
+                HighScoreManagerScript.instance.CheckAndSaveHighScore(currentScore);  //For HighScore Checking
                 break;
         }
     }

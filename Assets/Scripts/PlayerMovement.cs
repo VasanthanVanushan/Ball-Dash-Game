@@ -75,8 +75,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 AudioManagerScript.instance.PlaySFX(AudioManagerScript.instance.collisionClip);
                 StateManagerScript.instance.ChangeToGameOver();
-                ScoreManagerScript.instance.gameOverScore();
-                CoinManagerScript.instance.gameOverCoinScore();
             }
         }
 

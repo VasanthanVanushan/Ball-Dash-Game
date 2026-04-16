@@ -41,9 +41,14 @@ public class ScoreManagerScript : MonoBehaviour
         ScoreText.text = Score.ToString();
     }
 
-    public void gameOverScore()
+    public void gameOverScore(int score)
     {
-        gameOverScoreText.text = Score.ToString();
+        gameOverScoreText.text = score.ToString();
+    }
+
+    public int GetScore() 
+    {
+        return Score;
     }
 
 }
