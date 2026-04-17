@@ -8,6 +8,7 @@ public class ScoreManagerScript : MonoBehaviour
 
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI gameOverScoreText;
+    public TextMeshProUGUI extraLifeScoreText;
 
 
     public int multiplayer =1;
@@ -39,6 +40,11 @@ public class ScoreManagerScript : MonoBehaviour
     {
         Score = Mathf.FloorToInt(player.position.z * multiplayer);
         ScoreText.text = Score.ToString();
+    }
+
+    public void extraLifeScore(int score)
+    {
+        extraLifeScoreText.text = score.ToString();
     }
 
     public void gameOverScore(int score)

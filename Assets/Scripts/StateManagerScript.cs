@@ -128,6 +128,14 @@ public class StateManagerScript : MonoBehaviour
                 Time.timeScale = 0;
                 ExtraLifeMenuUi.SetActive(true);
                 AudioManagerScript.instance.PlayMusic(AudioManagerScript.instance.menuClip);
+
+                int Score = ScoreManagerScript.instance.GetScore();
+                int CoinScore = CoinManagerScript.instance.GetCoinScore();
+
+                ScoreManagerScript.instance.extraLifeScore(Score);
+                CoinManagerScript.instance.extraLifeCoinScore(CoinScore);
+
+                CoinManagerScript.instance.totalCoinsDisplay();
                 break;
             case GameState.GameOver: 
                 Time.timeScale = 0;

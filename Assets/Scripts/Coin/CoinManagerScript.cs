@@ -8,6 +8,9 @@ public class CoinManagerScript : MonoBehaviour
 
     public TextMeshProUGUI coinScoreText;
     public TextMeshProUGUI gameOverCoinScoreText;
+    public TextMeshProUGUI extraLifeCoinScoreText;
+
+    public TextMeshProUGUI extraLifeTotalCoinsText;
 
 
     private void Awake()
@@ -31,6 +34,11 @@ public class CoinManagerScript : MonoBehaviour
         coinScoreText.text = currentCoins.ToString();
     }
 
+    public void extraLifeCoinScore(int coinScore)
+    {
+        extraLifeCoinScoreText.text = coinScore.ToString();
+    }
+
     public void gameOverCoinScore(int coins)
     {
         gameOverCoinScoreText.text = coins.ToString();
@@ -43,13 +51,20 @@ public class CoinManagerScript : MonoBehaviour
 
 
 
-    public void totalCoinsCollected(int collectedCoins)   //Home Menu usage
+    public void totalCoinsCollected(int collectedCoins)   //Total Coins usage
     {
         int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
         totalCoins += collectedCoins;
 
         PlayerPrefs.SetInt("TotalCoins", totalCoins);
         PlayerPrefs.Save();
+    }
+
+
+    public void totalCoinsDisplay()
+    {
+        int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
+        extraLifeTotalCoinsText.text = totalCoins.ToString();
     }
 
 }
