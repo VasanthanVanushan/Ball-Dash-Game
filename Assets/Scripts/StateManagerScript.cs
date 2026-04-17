@@ -18,11 +18,11 @@ public class StateManagerScript : MonoBehaviour
     public GameObject PauseMenuUi;
     public GameObject GameOverMenuUi;
 
-
-
     public GameState CurrentState { get; private set;}
 
     public float delay = 1f;
+
+    private bool isGameOverHandled = false;
 
     private void Awake()
     {
@@ -113,6 +113,13 @@ public class StateManagerScript : MonoBehaviour
                 CoinManagerScript.instance.gameOverCoinScore(currentCoinScore);
 
                 HighScoreManagerScript.instance.CheckAndSaveHighScore(currentScore);  //For HighScore Checking
+
+
+                if(isGameOverHandled == false)
+                {
+                    CoinManagerScript.instance.totalCoinsCollected(currentCoinScore);   //Home Menu->Total Coins
+                    isGameOverHandled = true;
+                }
                 break;
         }
     }

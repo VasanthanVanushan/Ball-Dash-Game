@@ -23,7 +23,6 @@ public class HighScoreManagerScript : MonoBehaviour
 
     private void Start()
     {
-
         // Load saved high scores
         highScore = PlayerPrefs.GetInt("HighScore", 0);
 

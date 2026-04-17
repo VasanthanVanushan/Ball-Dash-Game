@@ -4,7 +4,7 @@ using TMPro;
 public class CoinManagerScript : MonoBehaviour
 {
     public static CoinManagerScript instance;       //Singleton for global access
-    private int totalCoins = 0 ;
+    private int currentCoins = 0 ;
 
     public TextMeshProUGUI coinScoreText;
     public TextMeshProUGUI gameOverCoinScoreText;
@@ -25,10 +25,10 @@ public class CoinManagerScript : MonoBehaviour
 
     public void addCoin(int amount)
     {
-        totalCoins = totalCoins + amount ;
+        currentCoins = currentCoins + amount ;
         //Debug.Log("Total Coins : " + totalCoins);
 
-        coinScoreText.text = totalCoins.ToString();
+        coinScoreText.text = currentCoins.ToString();
     }
 
     public void gameOverCoinScore(int coins)
@@ -38,7 +38,18 @@ public class CoinManagerScript : MonoBehaviour
 
     public int GetCoinScore()  
     {
-        return totalCoins;
+        return currentCoins;
+    }
+
+
+
+    public void totalCoinsCollected(int collectedCoins)   //Home Menu usage
+    {
+        int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
+        totalCoins += collectedCoins;
+
+        PlayerPrefs.SetInt("TotalCoins", totalCoins);
+        PlayerPrefs.Save();
     }
 
 }
