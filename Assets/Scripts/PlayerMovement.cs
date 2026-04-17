@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             if (collision.gameObject.CompareTag("Obstacle")) //GameOver purpose
             {
                 AudioManagerScript.instance.PlaySFX(AudioManagerScript.instance.collisionClip);
-                StateManagerScript.instance.ChangeToGameOver();
+                StateManagerScript.instance.ChangeToExtraLife();
             }
         }
 

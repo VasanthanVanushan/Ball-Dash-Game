@@ -6,6 +6,7 @@ public enum GameState
 {
     Playing,
     Pause,
+    extraLife,
     GameOver
 }
 
@@ -16,11 +17,13 @@ public class StateManagerScript : MonoBehaviour
 
     public GameObject InGameMenuUi;
     public GameObject PauseMenuUi;
+    public GameObject ExtraLifeMenuUi;
     public GameObject GameOverMenuUi;
 
     public GameState CurrentState { get; private set;}
 
     public float delay = 1f;
+    public int extraLifeCoinAmount = 50;
 
     private bool isGameOverHandled = false;
 
@@ -65,6 +68,26 @@ public class StateManagerScript : MonoBehaviour
         {
             ChangeState(GameState.Pause);
         }
+        public void ChangeToExtraLife()
+        {
+            ChangeState(GameState.extraLife);
+        }
+        public void ChangeToExtraLifeAccepted()
+        {   
+            int totalCoinsCollected = PlayerPrefs.GetInt("TotalCoins", 0);
+            if(totalCoinsCollected >= extraLifeCoinAmount)
+            {
+                totalCoinsCollected = totalCoinsCollected - extraLifeCoinAmount;
+                PlayerPrefs.SetInt("TotalCoins", totalCoinsCollected);
+                PlayerPrefs.Save();
+                ChangeState(GameState.Playing);
+            }
+            else
+            {
+                Debug.Log("Not enough coins for extra life");
+                //Soon
+            }
+        }
         public void ChangeToGameOver()
         {
             ChangeState(GameState.GameOver);
@@ -101,6 +124,11 @@ public class StateManagerScript : MonoBehaviour
                 PauseMenuUi.SetActive(true);
                 AudioManagerScript.instance.PlayMusic(AudioManagerScript.instance.menuClip);
                 break;
+            case GameState.extraLife:
+                Time.timeScale = 0;
+                ExtraLifeMenuUi.SetActive(true);
+                AudioManagerScript.instance.PlayMusic(AudioManagerScript.instance.menuClip);
+                break;
             case GameState.GameOver: 
                 Time.timeScale = 0;
                 GameOverMenuUi.SetActive(true);
@@ -130,6 +158,7 @@ public class StateManagerScript : MonoBehaviour
         InGameMenuUi.SetActive(false);
         PauseMenuUi.SetActive(false);
         GameOverMenuUi.SetActive(false);
+        ExtraLifeMenuUi.SetActive(false);
     }
 
 }
