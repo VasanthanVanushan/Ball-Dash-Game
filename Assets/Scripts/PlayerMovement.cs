@@ -50,6 +50,16 @@ public class PlayerMovement : MonoBehaviour
     {
         float direction = Input.GetAxis("Horizontal");
 
+        if (MobileInput.moveLeft)
+        {
+            direction = -0.8f;
+        }
+
+        if (MobileInput.moveRight)
+        {
+            direction = 0.8f;
+        }
+
         Vector3 lateralVelocity = rb.linearVelocity;    
         lateralVelocity.x = direction * lateralForce; 
         rb.linearVelocity = lateralVelocity;
@@ -88,12 +98,14 @@ public class PlayerMovement : MonoBehaviour
 
     void JumpMovement()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.Space) || MobileInput.jump) && isGrounded)
         {
             // Reset vertical velocity for clean jump
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
             rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
+
+            MobileInput.jump = false;
         }
     }
 }

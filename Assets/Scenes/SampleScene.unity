@@ -543,6 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManagerScript
   ScoreText: {fileID: 2067376524}
   gameOverScoreText: {fileID: 1663798367}
+  extraLifeScoreText: {fileID: 0}
   multiplayer: 1
 --- !u!1 &338914206
 GameObject:
@@ -2547,6 +2548,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoinManagerScript
   coinScoreText: {fileID: 1529667669}
   gameOverCoinScoreText: {fileID: 1946694482}
+  extraLifeCoinScoreText: {fileID: 0}
+  extraLifeTotalCoinsText: {fileID: 0}
 --- !u!4 &1042323162
 Transform:
   m_ObjectHideFlags: 0
@@ -2677,12 +2680,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2843,11 +2846,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0b92b8dd1c92d4ab0c741851dccf47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  MainMenuUi: {fileID: 131366264}
   InGameMenuUi: {fileID: 614556254}
   PauseMenuUi: {fileID: 617105906}
+  ExtraLifeMenuUi: {fileID: 0}
   GameOverMenuUi: {fileID: 617516561}
   delay: 0.5
+  extraLifeCoinAmount: 50
 --- !u!4 &1392512854
 Transform:
   m_ObjectHideFlags: 0
